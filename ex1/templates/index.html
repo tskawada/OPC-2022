@@ -1,5 +1,8 @@
 <html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Open Campus 2022</title>
+        <link rel="stylesheet" type="text/css" href="../static/style.css" />
     </head>
     <body>
         <div id="header">
@@ -8,12 +11,21 @@
             </h1>
         </div>
         <div id="main">
-            <a href="#">
-                <button id="start">START</button>
-            </a>
-            <a href="#">
-                <button id="stop">STOP</button>
-            </a>
+            <div id="slider_area">
+                <h2>
+                    角度調整
+                </h2>
+                <input type="range" id="slider" min="-4" max="4" step="1">
+                <p id="range_value"></p>
+            </div>
+            <div id="button_area">
+                <div class="mybutton">
+                    <button id="button_start" onclick="buttonStart()">START</button>
+                </div>
+                <div class="mybutton">
+                    <button id="button_stop" onclick="buttonStop()">STOP</button>
+                </div>
+            </div>
         </div>
         <div id="footer">
             <p>
@@ -21,4 +33,36 @@
             </p>
         </div>
     </body>
+    <script>
+        const inputElem = document.getElementById('slider');
+        const currentValueElem = document.getElementById('range_value');
+        let buttonStartStop = 0;
+
+        const setCurrentValue = (val) => {
+            currentValueElem.innerText = val;
+        }
+
+        const rangeOnChange = (e) => {
+            setCurrentValue(e.target.value);
+        }
+
+        const buttonStart = () => {
+            if (buttonStartStop === 0) {
+                buttonStartStop = 1;
+                // post
+            }
+        }
+
+        const buttonStop = () => {
+            if (buttonStartStop === 1) {
+                buttonStartStop = 0;
+                // post
+            }
+        }
+
+        window.onload = () => {
+            inputElem.addEventListener("input", rangeOnChange);
+            setCurrentValue(inputElem.value);
+        }
+    </script>
 </html>

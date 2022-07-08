@@ -1,0 +1,83 @@
+html {
+    background-color: #e5f1f5;
+    margin: 0vh 15vw;
+}
+
+#main {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+#slider_area {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+#slider_area input{
+    margin: 0vh 20vw;
+}
+
+#slider_area p{
+    text-align: center;
+}
+
+#button_area {
+    display: flex;
+    justify-content: space-around;
+}
+
+.mybutton {
+    margin: 5vh 5vw;
+}
+
+#button_start {
+	box-shadow:inset 0px 1px 0px 0px #b2d6e3;
+	background:linear-gradient(to bottom, #66adc7 5%, #0077a2 100%);
+	background-color:#66adc7;
+	border-radius:6px;
+	border:1px solid #7ebad0;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #3392b4;
+}
+#button_start:hover {
+	background:linear-gradient(to bottom, #0077a2 5%, #66adc7 100%);
+	background-color:#0077a2;
+}
+#button_start:active {
+	position:relative;
+	top:1px;
+}
+
+#button_stop {
+	box-shadow:inset 0px 1px 0px 0px #eccce4;
+	background:linear-gradient(to bottom, #d07fbb 5%, #a30078 100%);
+	background-color:#d07fbb;
+	border-radius:6px;
+	border:1px solid #e3b2d6;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #d07fbb;
+}
+#button_stop:hover {
+	background:linear-gradient(to bottom, #a30078 5%, #d07fbb 100%);
+	background-color:#0077a2;
+}
+#button_stop:active {
+	position:relative;
+	top:1px;
+}
