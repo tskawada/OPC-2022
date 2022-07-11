@@ -1,7 +1,12 @@
 from flask import Flask, render_template, request, send_from_directory
-# import RPi.GPIO as GPIO
+# servo.py
+import RPi.GPIO as GPIO
+import time
+import argparse
+import servo
 
 app = Flask(__name__)
+Angle = servo.Servo(0)
 
 @app.route("/", methods=["GET", "POST"])
 def stop():
@@ -18,7 +23,8 @@ def start():
         # angle = request.json["angleValue"]
         jsonData = request.json
         angle = jsonData["angleValue"]
-        print(angle)
+        Angle.angle(angle)
+        print(Angle.read_ang())
         return render_template("start.html")
 
 if __name__ == "__main__":
@@ -27,3 +33,4 @@ if __name__ == "__main__":
         # app.run(debug=False, host="0.0.0.0", port=8000)
     except Exception as e:
         print(e)
+        del Angle
