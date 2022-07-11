@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, send_from_directory
 # servo.py
 import RPi.GPIO as GPIO
 import time
-import argparse
 import servo
 
 app = Flask(__name__)
@@ -23,7 +22,7 @@ def start():
         # angle = request.json["angleValue"]
         jsonData = request.json
         angle = jsonData["angleValue"]
-        Angle.servo(angle)
+        Angle.servo_ctrl(angle)
         print(Angle.read_ang())
         return render_template("start.html")
 
