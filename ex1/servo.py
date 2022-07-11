@@ -23,7 +23,7 @@ class Servo:
 if __name__ == "__main__":
     serv = Servo()
     serv.servo_ctrl(-3)
-    time.sleep(0.3)
+    sleep(0.3)
     serv.servo_ctrl(3)
-    time.sleep(0.3)
+    sleep(0.3)
     del serv
