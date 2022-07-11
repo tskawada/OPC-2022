@@ -3,13 +3,23 @@ from flask import Flask, render_template, request, send_from_directory
 
 app = Flask(__name__)
 
-# @app.route('/favicon.ico')
-# def favicon():
-#     return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+@app.route("/", methods=["GET", "POST"])
+def stop():
+    if request.method == "GET":
+        return render_template("index.html")
+    elif request.method == "POST":
+        return render_template("index.html")
 
-@app.route("/")
-def top():
-    return render_template("index.html")
+@app.route("/start", methods=["GET", "POST"])
+def start():
+    if request.method == "GET":
+        return render_template("start.html")
+    elif request.method == "POST":
+        # angle = request.json["angleValue"]
+        jsonData = request.json
+        angle = jsonData["angleValue"]
+        print(angle)
+        return render_template("start.html")
 
 if __name__ == "__main__":
     try:
