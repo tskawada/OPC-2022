@@ -47,14 +47,15 @@ def servo(value):
     Servo1.stop()
     dc_motor.stop()
 
-# #初期化
-try:
-    servo(angle)
-    # GPIO.cleanup()
-except:
-    print("exception occurs")
-    Servo1.stop()
-    dc_motor.stop() 
-    # GPIO.cleanup()
-finally:
-    GPIO.cleanup()
+if __name__ == "__main__":
+    # #初期化
+    try:
+        servo(angle)
+        # GPIO.cleanup()
+    except:
+        print("exception occurs")
+        Servo1.stop()
+        dc_motor.stop() 
+        # GPIO.cleanup()
+    finally:
+        GPIO.cleanup()
