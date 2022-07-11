@@ -21,7 +21,7 @@ def start():
     elif request.method == "POST":
         # angle = request.json["angleValue"]
         jsonData = request.json
-        angle = jsonData["angleValue"]
+        angle = int(jsonData["angleValue"])
         Angle.servo_ctrl(angle)
         print(Angle.read_ang())
         return render_template("start.html")
