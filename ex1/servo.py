@@ -10,7 +10,7 @@ class Servo:
     def servo_ctrl(self, value):
         value = value * 10
         print(value)
-        duty = 2.5 + (12.0 - 2.5) * (angle + 90) / 180
+        duty = 2.5 + (12.0 - 2.5) * (value + 90) / 180
 
         self.servo.start(0)
         self.servo.ChangeDutyCycle(duty)
