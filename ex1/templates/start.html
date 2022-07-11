@@ -15,7 +15,7 @@
                 <h2>
                     角度調整
                 </h2>
-                <input type="range" id="slider" min="-4" max="4" step="1" style="pointer-events: none;">
+                <input type="range" id="slider" min="-4" max="4" step="1">
                 <p id="range_value"></p>
             </div>
             <div id="button_area">
@@ -49,21 +49,13 @@
         }
 
         const buttonStart = () => {
-            if (buttonStartStop === 0) {
-                buttonStartStop = 1;
-                console.log(buttonStartStop);
-                document.location = "/start";
-                // postMethodState("START");
-            }
+            console.log(buttonStartStop);
+            document.location = "/start";
         }
 
         const buttonStop = () => {
-            if (buttonStartStop === 1) {
-                buttonStartStop = 0;
-                console.log(buttonStartStop);
-                document.location = "/";
-                // postMethodState("STOP");
-            }
+            console.log(buttonStartStop);
+            document.location = "/";
         }
 
         const postMethodAngle = (data) => {
