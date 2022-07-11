@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO
+from time import sleep
 
 class Servo:
     def __init__(self):
@@ -18,3 +19,11 @@ class Servo:
     def __del__(self):
         self.servo.stop()
         GPIO.cleanup()
+
+if __name__ == "__main__":
+    serv = Servo()
+    serv.servo_ctrl(-3)
+    time.sleep(0.3)
+    serv.servo_ctrl(3)
+    time.sleep(0.3)
+    del serv
