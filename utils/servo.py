@@ -21,7 +21,7 @@ GPIO.setup(17, GPIO.OUT)
 
 #サーボモータSG90の周波数は50[Hz]
 Servo1 = GPIO.PWM(Servo_pin, 50)
-Servo2 = GPIO.PWM(17, 50)
+dc_motor = GPIO.PWM(17, 50)
 
 #角度からデューティ比を求める関数
 def servo_angle(angle):
@@ -34,7 +34,7 @@ def servo(value):
     mod = value % 10
     
     Servo1.start(0) #Servo.start(デューティ比[0-100%])
-    Servo2.start(0)
+    dc_motor.start(0)
     if(mod != 0 or value > 40 or value < -40):
         print("Your input angle is mistake!!!!")
         print()
@@ -45,7 +45,7 @@ def servo(value):
         servo_angle(value)
         time.sleep(5.0)
     Servo1.stop()
-    Servo2.stop()
+    dc_motor.stop()
 
 # #初期化
 try:
@@ -54,7 +54,7 @@ try:
 except:
     print("exception occurs")
     Servo1.stop()
-    Servo2.stop() 
+    dc_motor.stop() 
     # GPIO.cleanup()
 finally:
     GPIO.cleanup()
