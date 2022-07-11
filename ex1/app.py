@@ -23,7 +23,6 @@ def start():
         jsonData = request.json
         angle = int(jsonData["angleValue"])
         Angle.servo_ctrl(angle)
-        print(Angle.read_ang())
         return render_template("start.html")
 
 if __name__ == "__main__":
