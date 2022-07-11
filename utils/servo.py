@@ -1,60 +1,27 @@
 import RPi.GPIO as GPIO
-import time
-import argparse
 
-parser = argparse.ArgumentParser(description='netcat shell')
-parser.add_argument('-a', help='define angle', dest='angle', default=10)
+class Servo:
+    def __init__(self):
+        servo_pin = 18
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(servo_pin, GPIO.OUT)
+        self.servo1 = GPIO.PWM(servo_pin, 50)
 
-args = parser.parse_args()
-print(args)
-angle = format(args.angle)
-print(angle)
+    def servo_angle(self, angle):
+        duty = 2.5 + (12.0 - 2.5) * (angle + 90) / 180
+        self.servo1.ChangeDutyCycle(duty)
 
-angle = int(angle)
+    def servo(self, value):
+        value = value*10
+        mod = value % 10
 
-#PWMの設定
-Servo_pin = 18
-#Relay_pin = 17
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(Servo_pin, GPIO.OUT)
-GPIO.setup(17, GPIO.OUT)
+        self.servo1.start(0)
+        if(mod != 0 or value > 40 or value < -40):
+            print("Your input angle is mistake!!!!")
+            print()
+        else:
+            self.servo_angle(value)
+        self.servo1.stop()
 
-#サーボモータSG90の周波数は50[Hz]
-Servo1 = GPIO.PWM(Servo_pin, 50)
-dc_motor = GPIO.PWM(17, 50)
-
-#角度からデューティ比を求める関数
-def servo_angle(angle):
-    duty = 2.5 + (12.0 - 2.5) * (angle + 90) / 180   #角度からデューティ比を求める
-    Servo1.ChangeDutyCycle(duty)     #デューティ比を変更
-    time.sleep(0.3)
-
-def servo(value):
-    value = value*10
-    mod = value % 10
-    
-    Servo1.start(0) #Servo.start(デューティ比[0-100%])
-    dc_motor.start(0)
-    if(mod != 0 or value > 40 or value < -40):
-        print("Your input angle is mistake!!!!")
-        print()
-    else:
-        GPIO.output(17, 1)
-        time.sleep(1.0)
-        print("test\n")
-        servo_angle(value)
-        time.sleep(5.0)
-    Servo1.stop()
-    dc_motor.stop()
-
-# #初期化
-try:
-    servo(angle)
-    # GPIO.cleanup()
-except:
-    print("exception occurs")
-    Servo1.stop()
-    dc_motor.stop() 
-    # GPIO.cleanup()
-finally:
-    GPIO.cleanup()
+    def __del__(self):
+        GPIO.cleanup()
