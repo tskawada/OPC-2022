@@ -6,7 +6,7 @@ import argparse
 import servo
 
 app = Flask(__name__)
-Angle = servo.Servo(0)
+Angle = servo.Servo()
 
 @app.route("/", methods=["GET", "POST"])
 def stop():
