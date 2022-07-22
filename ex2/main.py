@@ -1,4 +1,3 @@
-from ex2.servo import Servo
 from face_detector import FaceDetector
 from relay import Relay
 from servo import Servo
@@ -16,12 +15,15 @@ def main():
             relay.straight()
 
             print(center_x, end="")
-            if center_x > fd.cap_width / 2:
-                servo.servo_ctrl(-3)
-                print("Move right")
-            else:
+            if center_x > fd.cap_width / 2 + 100:
                 servo.servo_ctrl(3)
+                print("Move right")
+            elif center_x < fd.cap_width / 2 - 100:
+                servo.servo_ctrl(-3)
                 print("Move left")
+            else:
+                servo.servo_ctrl(0)
+                print("Move center")
         else:
             relay.stop()
             print("No face")
@@ -31,3 +33,6 @@ def main():
             del relay
             del servo
             break
+
+if __name__ == "__main__":
+    main()
