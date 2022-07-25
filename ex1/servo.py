@@ -22,8 +22,11 @@ class Servo:
 
 if __name__ == "__main__":
     serv = Servo()
-    serv.servo_ctrl(-3)
-    sleep(0.3)
-    serv.servo_ctrl(3)
-    sleep(0.3)
-    del serv
+    try:
+        while(1):
+            a = int(input("Enter the integer (-4 ~ 4): "))
+            serv.servo_ctrl(a)
+            sleep(0.3)
+    except Exception as e:
+        print(e)
+        del serv
