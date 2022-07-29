@@ -3,8 +3,13 @@ from relay import Relay
 from servo import Servo
 import cv2
 
+def load_cascade():
+    cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+    return cascade
+
 def main():
-    fd = FaceDetector()
+    cascade = load_cascade()
+    fd = FaceDetector(cascade)
     servo = Servo()
     relay = Relay()
 
