@@ -18,17 +18,8 @@ class Relay:
         GPIO.cleanup()
 
 if __name__ == "__main__":
-    relay = Relay()
-    try:
-        while(1):
-            comm = input("Enter 'start' or 'stop': ")
-            if (comm == "start"):
-                relay.straight()
-            elif (comm == "stop"):
-                relay.stop()
-            else:
-                print("Try again.")
-            sleep(0.1)
-    except Exception as e:
-        print(e)
-        del relay
+    straight()
+    sleep(5)
+    print("stop")
+    stop()
+    GPIO.cleanup()

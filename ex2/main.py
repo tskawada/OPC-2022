@@ -1,29 +1,43 @@
-# -*- coding: utf-8 -*-
+from face_detector import FaceDetector
+from relay import Relay
+from servo import Servo
 import cv2
 
+def load_cascade():
+    cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+    return cascade
+
 def main():
-    cap = cv2.VideoCapture(0)
-    cascade = cv2.CascadeClassifier("cascade/haarcascade_frontalface_alt2.xml")
-    # cascade = cv2.CascadeClassifier("cascade/haarcascade_fullbody.xml")
+    cascade = load_cascade()
+    fd = FaceDetector(cascade)
+    servo = Servo()
+    relay = Relay()
 
     while True:
-        ret, img = cap.read()
+        center_x = fd.get_center_x()
 
-        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        if center_x is not None:
+            relay.straight()
 
-        face = cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=3, minSize=(30, 30))
+            print(center_x, end="")
+            if center_x > fd.cap_width / 2 + 100:
+                servo.servo_ctrl(3)
+                print("Move right")
+            elif center_x < fd.cap_width / 2 - 100:
+                servo.servo_ctrl(-3)
+                print("Move left")
+            else:
+                servo.servo_ctrl(0)
+                print("Move center")
+        else:
+            relay.stop()
+            print("No face")
 
-        print(face)
-        if len(face) > 0:
-            for rect in face:
-                cv2.rectangle(img, tuple(rect[0:2]),tuple(rect[0:2]+rect[2:4]), (0, 0, 255), thickness=2)
-        cv2.imshow("Face", img)
         if cv2.waitKey(1) & 0xFF == ord('q'):
+            del fd
+            del relay
+            del servo
             break
 
-    cap.release()
-    cv2.destroyAllWindows()
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
