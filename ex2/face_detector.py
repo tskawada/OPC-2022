@@ -2,13 +2,13 @@
 import cv2
 
 class FaceDetector():
-    def __init__(self, cascade):
+    def __init__(self, cascade_file_name):
         self.cap = cv2.VideoCapture(0)
-        # self.cap.set(cv2.CAP_PROP_FPS, 2)
-        # self.cascade = cv2.CascadeClassifier("cascade/haarcascade_frontalface_alt2.xml")
+        self.cap.set(cv2.CAP_PROP_FPS, 2) #set FPS
+        self.cascade = cv2.CascadeClassifier(cascade_file_name)
         self.cascade = cascade
-        # self.cap_width = self.cap.get(cv2.CAP_PROP_FRAME_WIDTH)
-        # self.cap_height = self.cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
+        self.cap_width = self.cap.get(cv2.CAP_PROP_FRAME_WIDTH)
+        self.cap_height = self.cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
 
     def detect(self):
         while True:
@@ -61,6 +61,7 @@ class FaceDetector():
         cv2.destroyAllWindows()
 
 def main():
+    cascade_file_name = "cascade/haarcascade_frontalface_alt.xml"
     fd = FaceDetector()
     fd.detect()
 
