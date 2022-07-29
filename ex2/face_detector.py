@@ -4,7 +4,7 @@ import cv2
 class FaceDetector():
     def __init__(self, cascade):
         self.cap = cv2.VideoCapture(0)
-        self.cap.set(cv2.CAP_PROP_FPS, 2)
+        # self.cap.set(cv2.CAP_PROP_FPS, 2)
         # self.cascade = cv2.CascadeClassifier("cascade/haarcascade_frontalface_alt2.xml")
         self.cascade = cascade
         # self.cap_width = self.cap.get(cv2.CAP_PROP_FRAME_WIDTH)
