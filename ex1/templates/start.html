@@ -11,15 +11,20 @@
             </h1>
         </div>
         <div id="main">
-            <div id="button_area">
+            <div id="slider_area">
                 <h2>
-                    モータのONボタン
+                    角度調整
                 </h2>
-                <p>
-                    ここにbuttonを作成する
-                    start用のボタンのidはbutton_startにすること
-                    mybuttonというクラスを使用すると，cssが反応する
-                </p>
+                <input type="range" id="slider" min="-4" max="4" step="1">
+                <p id="range_value"></p>
+            </div>
+            <div id="button_area">
+                <div class="mybutton">
+                    <button id="button_start" onclick="buttonStart()" disabled>START</button>
+                </div>
+                <div class="mybutton">
+                    <button id="button_stop" onclick="buttonStop()">STOP</button>
+                </div>
             </div>
         </div>
         <div id="footer">
