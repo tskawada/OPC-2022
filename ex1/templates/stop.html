@@ -15,20 +15,16 @@
                 <h2>
                     角度調整
                 </h2>
-                <p>
-                    ここにrangeを作成する
-                    idはsliderにし，値は[-4, 4]の整数値とする
-                </p>
+                <input type="range" id="slider" min="-4" max="4" step="1" style="pointer-events: none;">
+                <p id="range_value"></p>
             </div>
             <div id="button_area">
-                <h2>
-                    モータのOFFボタン
-                </h2>
-                <p>
-                    ここにbuttonを作成する
-                    stop用のボタンのidはbutton_stopにすること
-                    mybuttonというクラスを使用すると，cssが反応する
-                </p>
+                <div class="mybutton">
+                    <button id="button_start" onclick="buttonStart()">START</button>
+                </div>
+                <div class="mybutton">
+                    <button id="button_stop" onclick="buttonStop()" disabled>STOP</button>
+                </div>
             </div>
         </div>
         <div id="footer">
@@ -57,6 +53,7 @@
                 buttonStartStop = 1;
                 console.log(buttonStartStop);
                 document.location = "/start";
+                // postMethodState("START");
             }
         }
 
@@ -65,6 +62,7 @@
                 buttonStartStop = 0;
                 console.log(buttonStartStop);
                 document.location = "/";
+                // postMethodState("STOP");
             }
         }
 
@@ -72,8 +70,13 @@
             let objData = new Object();
             objData.angleValue = data;
             const jsonData = JSON.stringify(objData);
+            // console.log(jsonData);
             xhr.open("POST", "/start");
             xhr.setRequestHeader("Content-Type", "application/json");
+            // xhr.onload = () => {
+            //     // console.log(xhr.status);
+            //     // console.log("success!");
+            // };
             xhr.onerror = () => {
                 console.log(xhr.status);
                 console.log("error!");
