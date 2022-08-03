@@ -11,27 +11,51 @@ Motor = relay.Relay()
 
 @app.route("/", methods=["GET", "POST"])
 def stop():
+    # GETメソッド
     if request.method == "GET":
+        # ********* KADAI *********
+        
+        # ブラウザでSTOPボタンが押されたときの処理
         Motor.stop()
+        
+        # *************************
         return render_template("stop.html")
+    # POSTメソッド
     elif request.method == "POST":
+        # ********* KADAI *********
+        
+        # 特に記述なし
+        
+        # *************************
         return render_template("stop.html")
 
 @app.route("/start", methods=["GET", "POST"])
 def start():
+    # GETメソッド
     if request.method == "GET":
+        # ********* KADAI *********
+        
+        # ブラウザでSTARTボタンが押されたときの処理
         Motor.straight()
+        
+        # *************************
         return render_template("start.html")
+
+    # POSTメソッド
     elif request.method == "POST":
-        # angle = request.json["angleValue"]
+        # ブラウザからスライダーの値を受け取り，angleに格納
         jsonData = request.json
         angle = int(jsonData["angleValue"])
+        # ********* KADAI *********
+        
+        # ブラウザにてスライダーを動かしたときに実行される
         Angle.servo_ctrl(angle)
+        
+        # *************************
         return render_template("start.html")
 
 if __name__ == "__main__":
     try:
-        # app.run(debug=True, port=8000)
         app.run(debug=False, host="0.0.0.0", port=8000)
     except Exception as e:
         print(e)
