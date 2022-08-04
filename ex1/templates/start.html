@@ -17,7 +17,7 @@
                 </h2>
                 <!-- ****** KADAI ****** -->
 
-                <input type="range" id="slider" min="-4" max="4" step="1" style="pointer-events: none;">
+                <input type="range" id="slider" min="-4" max="4" step="1">
                 
                 <!-- ******************* -->
                 <p id="range_value"></p>
@@ -41,7 +41,7 @@
     <script>
         const inputElem = document.getElementById('slider');
         const currentValueElem = document.getElementById('range_value');
-        let buttonStartStop = 0;
+        let buttonStartStop = 1;
         const xhr = new XMLHttpRequest();
 
         const setCurrentValue = (val) => {
