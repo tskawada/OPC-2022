@@ -10,7 +10,7 @@ class FaceDetector():
         self.cap_width = self.cap.get(cv2.CAP_PROP_FRAME_WIDTH)
         self.cap_height = self.cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
 
-    def load_cascade():
+    def load_cascade(self):
         ### 1. カスケードの読み込み ####################################
             # cv2のメソッドを調べて，カスケードファイルを読み込む
 
