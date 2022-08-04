@@ -11,25 +11,14 @@
             </h1>
         </div>
         <div id="main">
-            <div id="slider_area">
-                <h2>
-                    角度調整
-                </h2>
-                <!-- ****** KADAI ****** -->
-
-                <input type="range" id="slider" min="-4" max="4" step="1" style="pointer-events: none;">
-                
-                <!-- ******************* -->
-                <p id="range_value"></p>
-            </div>
             <div id="button_area">
-                <!-- ****** KADAI ****** -->
-                
                 <div class="mybutton">
-                    <button id="button_stop" onclick="buttonStop()" disabled>STOP</button>
+                    <!-- ****** KADAI ****** -->
+
+                    <button id="button_start" onclick="buttonStart()">START</button>            
+                    
+                    <!-- ******************* -->
                 </div>
-                
-                <!-- ******************* -->
             </div>
         </div>
         <div id="footer">
@@ -54,27 +43,26 @@
         }
 
         const buttonStart = () => {
-            if (buttonStartStop === 0) {
-                buttonStartStop = 1;
-                console.log(buttonStartStop);
-                document.location = "/start";
-            }
+            console.log(buttonStartStop);
+            document.location = "/start";
         }
 
         const buttonStop = () => {
-            if (buttonStartStop === 1) {
-                buttonStartStop = 0;
-                console.log(buttonStartStop);
-                document.location = "/";
-            }
+            console.log(buttonStartStop);
+            document.location = "/";
         }
 
         const postMethodAngle = (data) => {
             let objData = new Object();
             objData.angleValue = data;
             const jsonData = JSON.stringify(objData);
+            // console.log(jsonData);
             xhr.open("POST", "/start");
             xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onload = () => {
+                console.log(xhr.status);
+                console.log("success!");
+            };
             xhr.onerror = () => {
                 console.log(xhr.status);
                 console.log("error!");
