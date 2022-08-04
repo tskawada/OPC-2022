@@ -11,15 +11,31 @@
             </h1>
         </div>
         <div id="main">
-            <div id="button_area">
+            <div id="slider_area">
                 <h2>
-                    モータのONボタン
+                    角度調整
                 </h2>
+                <!-- ****** KADAI ****** -->
+
                 <p>
-                    ここにbuttonを作成する
-                    start用のボタンのidはbutton_startにすること
-                    mybuttonというクラスを使用すると，cssが反応する
+                    inputタグ内にあるrangeを用いてスライダーを作成しましょう．
+                    idをsliderにすることで，python側と接続できるようになります．
+                    値の範囲は[-4 ~ 4]で"1"刻みで変化するように設定をお願いします．
                 </p>
+                
+                <!-- ******************* -->
+                <p id="range_value"></p>
+            </div>
+            <div id="button_area">
+                <!-- ****** KADAI ****** -->
+                
+                <p>
+                    buttonタグでSTOPボタンを作成しましょう．
+                    button作成時にonclick属性に"buttonStop()"をつなぐと，pythonプログラムと連動するようになります．
+                    ※おまけ：class属性をmybuttonに，id属性をbutton_stopにすると，CSSが反応します．
+                </p>
+                
+                <!-- ******************* -->
             </div>
         </div>
         <div id="footer">
@@ -31,7 +47,7 @@
     <script>
         const inputElem = document.getElementById('slider');
         const currentValueElem = document.getElementById('range_value');
-        let buttonStartStop = 0;
+        let buttonStartStop = 1;
         const xhr = new XMLHttpRequest();
 
         const setCurrentValue = (val) => {
@@ -44,26 +60,27 @@
         }
 
         const buttonStart = () => {
-            console.log(buttonStartStop);
-            document.location = "/start";
+            if (buttonStartStop === 0) {
+                buttonStartStop = 1;
+                console.log(buttonStartStop);
+                document.location = "/start";
+            }
         }
 
         const buttonStop = () => {
-            console.log(buttonStartStop);
-            document.location = "/";
+            if (buttonStartStop === 1) {
+                buttonStartStop = 0;
+                console.log(buttonStartStop);
+                document.location = "/";
+            }
         }
 
         const postMethodAngle = (data) => {
             let objData = new Object();
             objData.angleValue = data;
             const jsonData = JSON.stringify(objData);
-            // console.log(jsonData);
             xhr.open("POST", "/start");
             xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.onload = () => {
-                console.log(xhr.status);
-                console.log("success!");
-            };
             xhr.onerror = () => {
                 console.log(xhr.status);
                 console.log("error!");

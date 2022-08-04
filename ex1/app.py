@@ -14,7 +14,7 @@ def stop():
     # GETメソッド
     if request.method == "GET":
         # ********* KADAI *********
-
+        
         # *************************
         return render_template("stop.html")
     # POSTメソッド
@@ -43,6 +43,7 @@ def start():
         return render_template("start.html")
         
 if __name__ == "__main__":
+    Motor.stop()
     try:
         app.run(debug=False, host="0.0.0.0", port=8000)
     except Exception as e:

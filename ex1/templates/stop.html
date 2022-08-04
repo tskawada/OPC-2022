@@ -11,25 +11,18 @@
             </h1>
         </div>
         <div id="main">
-            <div id="slider_area">
-                <h2>
-                    角度調整
-                </h2>
-                <p>
-                    ここにrangeを作成する
-                    idはsliderにし，値は[-4, 4]の整数値とする
-                </p>
-                <p id="range_value"></p>
-            </div>
             <div id="button_area">
-                <h2>
-                    モータのOFFボタン
-                </h2>
-                <p>
-                    ここにbuttonを作成する
-                    stop用のボタンのidはbutton_stopにすること
-                    mybuttonというクラスを使用すると，cssが反応する
-                </p>
+                <div class="mybutton">
+                    <!-- ****** KADAI ****** -->          
+                    
+                    <p>
+                        buttonタグでSTARTボタンを作成しましょう．
+                        button作成時にonclick属性に"buttonStart()"をつなぐと，pythonプログラムと連動するようになります．
+                        ※おまけ：class属性をmybuttonに，id属性をbutton_startにすると，CSSが反応します．
+                    </p>
+
+                    <!-- ******************* -->
+                </div>
             </div>
         </div>
         <div id="footer">
@@ -54,27 +47,26 @@
         }
 
         const buttonStart = () => {
-            if (buttonStartStop === 0) {
-                buttonStartStop = 1;
-                console.log(buttonStartStop);
-                document.location = "/start";
-            }
+            console.log(buttonStartStop);
+            document.location = "/start";
         }
 
         const buttonStop = () => {
-            if (buttonStartStop === 1) {
-                buttonStartStop = 0;
-                console.log(buttonStartStop);
-                document.location = "/";
-            }
+            console.log(buttonStartStop);
+            document.location = "/";
         }
 
         const postMethodAngle = (data) => {
             let objData = new Object();
             objData.angleValue = data;
             const jsonData = JSON.stringify(objData);
+            // console.log(jsonData);
             xhr.open("POST", "/start");
             xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onload = () => {
+                console.log(xhr.status);
+                console.log("success!");
+            };
             xhr.onerror = () => {
                 console.log(xhr.status);
                 console.log("error!");
