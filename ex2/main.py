@@ -14,9 +14,6 @@ class FaceDetector():
         ### 1. カスケードの読み込み ####################################
             # cv2のメソッドを調べて，カスケードファイルを読み込む
         
-        cascade = cv2.CascadeClassifier("cascade/haarcascade_frontalface_alt2.xml")
-        return cascade
-        
         ###############################################################
 
     def detect(self):
@@ -59,8 +56,6 @@ class FaceDetector():
         ### 2. 顔の中心座標を求める ####################################
             # 顔の中心座標を求め，center_xに代入する
 
-        center_x = face[0] + face[2] / 2
-
         ###############################################################
         
         return center_x
@@ -72,10 +67,6 @@ class FaceDetector():
 
         ### 3. 検出した物体のうち一番大きいものを探す ####################
             # 面積を算出し，一番大きいものをbiggestに代入する
-        
-        for face in faces:
-            if face[2] * face[3] > biggest[2] * biggest[3]:
-                biggest = face
         
         ###############################################################
         return biggest
@@ -100,17 +91,6 @@ def main():
                 # 物体が左にあるときは、サーボを左に動かす
                 # 物体が右にあるときは、サーボを右に動かす
                 # 物体が中央にあるときは，サーボを中央に動かす
-
-            print(center_x, end="")
-            if center_x > fd.cap_width / 2 + 100:
-                servo.servo_ctrl(3)
-                print("Move right")
-            elif center_x < fd.cap_width / 2 - 100:
-                servo.servo_ctrl(-3)
-                print("Move left")
-            else:
-                servo.servo_ctrl(0)
-                print("Move center")
 
             ###############################################################
         else:
