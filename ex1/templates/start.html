@@ -15,27 +15,13 @@
                 <h2>
                     角度調整
                 </h2>
-                <!-- ****** KADAI ****** -->
-
-                <p>
-                    inputタグ内にあるrangeを用いてスライダーを作成しましょう．
-                    idをsliderにすることで，python側と接続できるようになります．
-                    値の範囲は[-4 ~ 4]で"1"刻みで変化するように設定をお願いします．
-                </p>
-                
-                <!-- ******************* -->
+                <input type="range" id="slider" min="-4" max="4" step="1">
                 <p id="range_value"></p>
             </div>
             <div id="button_area">
-                <!-- ****** KADAI ****** -->
-                
-                <p>
-                    buttonタグでSTOPボタンを作成しましょう．
-                    button作成時にonclick属性に"buttonStop()"をつなぐと，pythonプログラムと連動するようになります．
-                    ※おまけ：class属性をmybuttonに，id属性をbutton_stopにすると，CSSが反応します．
-                </p>
-                
-                <!-- ******************* -->
+                <div class="mybutton">
+                    <button id="button_stop" onclick="buttonStop()">STOP</button>
+                </div>
             </div>
         </div>
         <div id="footer">

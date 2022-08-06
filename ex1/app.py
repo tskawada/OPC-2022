@@ -14,14 +14,12 @@ def stop():
     # GETメソッド
     if request.method == "GET":
         # ********* KADAI *********
+        # STOPボタンが押されたときの処理
         
         # *************************
         return render_template("stop.html")
     # POSTメソッド
     elif request.method == "POST":
-        # ********* KADAI *********
-
-        # *************************
         return render_template("stop.html")
 
 @app.route("/start", methods=["GET", "POST"])
@@ -29,6 +27,7 @@ def start():
     # GETメソッド
     if request.method == "GET":
         # ********* KADAI *********
+        # STARTボタンが押されたときの処理
 
         # *************************
         return render_template("start.html")
@@ -38,6 +37,7 @@ def start():
         jsonData = request.json
         angle = int(jsonData["angleValue"])
         # ********* KADAI *********
+        # range（スライダー）が変化したときの処理
 
         # *************************
         return render_template("start.html")
