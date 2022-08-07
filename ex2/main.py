@@ -4,7 +4,7 @@ from servo import Servo
 import cv2
 
 def load_cascade():
-    cascade_file_name = "cascade/haarcascade_frontalface_alt.xml"
+    cascade = cv2.CascadeClassifier('cascade/haarcascade_frontalface_default.xml')
     return cascade
 
 def main():
