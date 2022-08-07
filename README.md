@@ -13,5 +13,5 @@ http://[IP address]:8000
 ## ex2 顔認識・追従
 - OpenCVを用いた顔認識
 ```
-python3 main.py
+python3 ex2/main.py
 ```
